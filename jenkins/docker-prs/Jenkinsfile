@@ -1,0 +1,38 @@
+env.clasp_branch = env.CHANGE_ID ? env.CHANGE_BRANCH : env.BRANCH_NAME
+
+pipeline {
+    options {
+        buildDiscarder logRotator(
+            artifactDaysToKeepStr: '',
+            artifactNumToKeepStr: '',
+            daysToKeepStr: '',
+            numToKeepStr: '5'
+        )
+    }
+    agent {
+        label 'cae-linux-build'
+    }
+    stages{
+        stage('Clear Docker logins') {
+            steps {
+                sh "docker logout"
+            }
+        }
+        stage('Docker Build and Test') {
+            agent {
+                dockerfile {
+                    reuseNode true
+                    filename 'Dockerfile'
+                }
+            }
+            stages {
+                stage('Test') {
+                    steps {
+                        sh "/bin/bash -c 'nosetests -v -w tests --with-xunit'"
+                        junit "**/nosetests.xml"
+                    }
+                }
+            }
+        }
+    }
+}

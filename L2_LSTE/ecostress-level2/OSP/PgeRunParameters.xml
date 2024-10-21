@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file needs to exist in the directory given for L2_OSP_DIR in the RunConfig file. -->
+<input xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xalan="http://xml.apache.org/xslt"
+       xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas"
+       xsi:noNamespaceSchemaLocation="">
+    <!-- List of RTTOV parameters-->
+    <group name="RTTOV">
+        <scalar name="RttovExe">
+          /pkg/RTTOV/RTTOVv12/bin/rttov_ECOSTRESS_fwd.exe
+        </scalar>
+        <scalar name="RttovCoef">
+          /pkg/RTTOV/RTTOVv12/rtcoef_rttov12/rttov7pred54L/rtcoef_iss_1_ecostres_v7pred.dat
+        </scalar>
+          <!-- /project/test/rfreepar/L2/ecostress-level2/src/run_ecostress_fwd_3band.sh -->
+        <scalar name="Rttov3BandScript">
+          /ops/deploy/pge/src/L2/1.2.1/ecostress-level2/src/run_ecostress_fwd_3band.sh
+        </scalar>
+          <!-- /project/test/rfreepar/L2/ecostress-level2/src/run_ecostress_fwd_5band.sh -->
+        <scalar name="Rttov5BandScript">
+          /ops/deploy/pge/src/L2/1.2.1/ecostress-level2/src/run_ecostress_fwd_5band.sh
+        </scalar>
+        <scalar name="RttovRadconLUT">
+          ECOSTRESS_Rad_conversion_LUT_v4.txt
+        </scalar>
+    </group>
+    <!-- list of static ancillary files under L2_OSP_DIR from RunConfig-->
+    <group name="StaticLookupFiles">
+        <scalar name="BT_LUT">ECOSTRESS_Rad_LUT_v4.txt</scalar>
+        <scalar name="WvsCoefFile">wvs_coeff_iss_ecostress_v4.h5</scalar>
+        <scalar name="cloud_BTdiff">cloud_BTdiff_4minus5_ecostress.h5</scalar>
+        <scalar name="cloud_LUT">ECOSTRESS_LUT_Cloud_BT11_v2.h5</scalar>
+    </group>
+    <group name="RuntimeParameters">
+      <!-- These parameters have defaults in the code that are used 
+           whenever one of the parameters is not found. -->
+      <scalar name="AsterDir">/project/test/rfreepar/ASTER_GED/AST_L3_1km</scalar>
+      <!-- Cloud Parameters -->
+      <scalar name="CloudExtend">5</scalar>
+      <scalar name="slapse">5.0</scalar>
+      <scalar name="BT_land_day">280.0</scalar>
+      <scalar name="BT_land_night">270.0</scalar>
+      <scalar name="BT_ocean">270.0</scalar>
+      <scalar name="cloud_high_alt_threshold_km">1.0</scalar>
+      <scalar name="cloud_high_alt_increase">2.0</scalar>
+      <scalar name="imclose_radius">20</scalar>
+
+      <!-- TES parameters -->
+      <scalar name="bmp">1.2907 1.5703 1.6766 1.8132 1.8048</scalar>
+      <scalar name="CoVeg3Band">0.9895 0.7994 0.8572</scalar>
+      <scalar name="CoBare3Band">0.9895 0.7994 0.8572</scalar>
+      <scalar name="CoVeg5Band">0.9955 0.6926 0.7823</scalar>
+      <scalar name="CoBare5Band">0.9955 0.6926 0.7823</scalar>
+      <scalar name="ElapsedSeconds">300</scalar>
+      <scalar name="EmaxVeg">0.985</scalar>
+      <scalar name="EmaxBare">0.985</scalar>
+      <scalar name="EmisErrLims">0.013, 0.015, 0.017</scalar>
+      <scalar name="EmisWb3BandCoeffs">0.3287 0.3783 0.3158 -0.0255</scalar>
+      <scalar name="EmisWb5BandCoeffs">0.0715 0.0856 0.1877 0.3210 0.3809 -0.0478</scalar>
+      <scalar name="G1">1.0</scalar>
+      <scalar name="G2">0.7</scalar>
+      <scalar name="Last5BandOrbit">3894</scalar>
+      <scalar name="NPlanckIterations">13</scalar>
+      <scalar name="PwvThresh1">2.5</scalar>
+      <scalar name="PwvThresh2">2.0</scalar>
+      <scalar name="RunTgWvs">N</scalar>
+      <scalar name="SmoothScale1">750</scalar>
+      <scalar name="SmoothScale2">150</scalar>
+      <scalar name="TgThresh">290.0</scalar>
+      <scalar name="TerrLims">1.0,1.5,2.5</scalar>
+      <scalar name="XE1">0.0153    0.0155   -0.0018</scalar>
+      <scalar name="XE2">0.0121    0.0055    0.0004</scalar>
+      <scalar name="XE3">0.0128    0.0036    0.0009</scalar>
+      <scalar name="XE4">0.0110    0.0017    0.0005</scalar>
+      <scalar name="XE5">0.0114   -0.0038    0.0025</scalar>
+      <scalar name="XTT">0.3842 0.5307 0.0055</scalar>
+    </group>
+    <group name="NWP">
+      <!-- Here, the directory names used to identify one of the three
+           algorithms can be set. -->
+      <scalar name="ecmwf">ECMWF</scalar>
+      <scalar name="geos">GEOS</scalar>
+      <scalar name="merra">MERRA</scalar>
+      <scalar name="ncep">NCEP</scalar>
+    </group>
+    <group name="Metadata">
+      <!-- Members of this group will be output as metadata attributes to
+           the StandardMetatadata in the L2 output products. -->
+      <!-- Standard minimal metadata set: -->
+      <scalar name="AncillaryInputPointer">InputFileGroup</scalar>
+      <scalar name="CollectionLabel">V002</scalar>
+    </group>
+    <!-- metadata for L2_CLOUD only -->
+    <group name="L2_CLOUD_Metadata">
+      <scalar name="LongName">Cloud Mask</scalar>
+      <scalar name="PGEName">L2_PGE</scalar>
+      <scalar name="PGEVersion">2.0.1</scalar>
+      <scalar name="ProcessingLevelID">L2</scalar>
+      <scalar name="ProcessingLevelDescription">Level 2 Cloud Mask</scalar>
+      <scalar name="ShortName">ECO2CLD</scalar>
+    </group>
+    <!-- metadata for L2_LSTE only -->
+    <group name="L2_LSTE_Metadata">
+      <scalar name="LongName">Land Surface Temperature and Emissivity</scalar>
+      <scalar name="PGEName">L2_PGE</scalar>
+      <scalar name="PGEVersion">2.0.1</scalar>
+      <scalar name="ProcessingLevelID">L2</scalar>
+      <scalar name="ProcessingLevelDescription">Level 2 Land Surface Temperature and Emissivity</scalar>
+      <scalar name="ShortName">ECO2LSTE</scalar>
+    </group>
+</input>

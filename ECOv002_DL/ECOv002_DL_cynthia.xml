@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<input xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xalan="http://xml.apache.org/xslt"
+       xsi:noNamespaceSchemaLocation="">
+    <group name="InputFileGroup">
+        {%- if data.input.l2tlste is string %}
+        <vector name="L2T_LSTE">
+        <element>{{ data.input.l2tlste }}</element>
+        {%- else %}
+        <vector name="L2T_LSTE">
+            {%- for val in data.input.l2tlste %}
+            <element>{{ val }}</element>
+            {%- endfor %}
+            {%- endif %}
+        </vector>
+    </group>
+    <group name="StaticAncillaryFileGroup">
+        <scalar name="L2T_STARS_MODEL">{{ data.ancillary.l2tstarsmodel }}</scalar>
+        <scalar name="L2T_STARS_INDICES">{{ data.ancillary.l2tstarsindices }}</scalar>
+        <scalar name="L2T_STARS_SOURCES">{{ data.ancillary.l2tstarssources }}</scalar>
+        <scalar name="L2T_STARS_WORKING">{{ data.ancillary.l2tstarsworking }}</scalar>
+        <scalar name="L3T_L4T_STATIC">{{ data.ancillary.l3tl4tstatic }}</scalar>
+        <scalar name="L3T_L4T_SRTM">{{ data.ancillary.l3tl4tsrtm }}</scalar>
+        <scalar name="L3T_L4T_NLCD">{{ data.ancillary.l3tl4tnlcd }}</scalar>
+        <scalar name="L3T_L4T_PTJPL_SOURCES">{{ data.ancillary.l3tl4tptjplsources }}</scalar>
+        <scalar name="L3T_L4T_PTJPL_WORKING">{{ data.ancillary.l3tl4tptjplworking }}</scalar>
+        <scalar name="L3T_L4T_ALEXI_SOURCES">{{ data.ancillary.l3tl4talexisources }}</scalar>
+        <scalar name="L3T_L4T_ALEXI_WORKING">{{ data.ancillary.l3tl4talexiworking }}</scalar>
+        <scalar name="L3G_L4G_PTJPL_WORKING">{{ data.ancillary.l3gl4gptjplworking }}</scalar>
+        <scalar name="L3G_L4G_ALEXI_WORKING">{{ data.ancillary.l3gl4galexiworking }}</scalar>
+    </group>
+    <group name="ProductPathGroup">
+        <scalar name="ProductCounter">{{ data.productpath.productcounter }}</scalar>
+        <scalar name="ProductPath">{{ data.productpath.path }}</scalar>
+        <scalar name="CollectionLabel">{{ data.productpath.label }}</scalar>
+        <scalar name="ShortName">{{ data.productpath.shortname }}</scalar>
+    </group>
+    <group name="PrimaryExecutable">
+        <scalar name="BuildID">{{ data.pge.buildid }}</scalar>
+        <scalar name="FullPathname">{{ data.pge.path }}</scalar>
+    </group>
+    <group name="Geometry">
+        <scalar name="SceneId">{{ data.geometry.scene }}</scalar>
+        <scalar name="OrbitNumber">{{ data.geometry.orbit }}</scalar>
+    </group>
+    <group name="PGENameGroup">
+        <scalar name="PGEName">{{ data.pge.pgename }}</scalar>
+    </group>
+    <group name="LogMetadata">
+        <vector name="CommandLineParameters">
+            <element>{{ data.log.pge }}</element>
+            <element>{{ data.log.runconfig }}</element>
+            <element>{{ data.log.logfile }}</element>
+        </vector>
+    </group>
+    <group name="JobIdentification">
+        <scalar name="ProductionLocation">ECOSTRESS Science Computing Facility</scalar>
+        <scalar name="TaskId">{{ data.job.taskid }}</scalar>
+        <scalar name="ProcessingNode">{{ data.job.node }}</scalar>
+        <scalar name="ProductionDateTime">{{ data.job.productiondatetime }}</scalar>
+        <scalar name="JobId">{{ data.job.jobid }}</scalar>
+        <scalar name="WorkflowInstanceId">{{ data.job.workflowinstanceid }}</scalar>
+    </group>
+</input>

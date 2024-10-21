@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<input xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xalan="http://xml.apache.org/xslt"
+       xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas"
+       xsi:noNamespaceSchemaLocation="">
+    <group name="LogMetadata">
+        <vector name="CommandLineParameters">
+            <element>/ops/deploy/pge/bin/current/L3G_L4G_ALEXI_PGE</element>
+            <element>/ops/operations/current-jobs/L3G_L4G_ALEXI_PGE/20210201T001122999/output/ECOv002_L3G_L4G_ALEXI_PGE_RunConfig_20210201T001122999.xml</element>
+            <element>/ops/operations/current-jobs/L3G_L4G_ALEXI_PGE/20210201T001122999/L3G_L4G_ALEXI_PGE_20210201T001122999.log</element>
+        </vector>
+    </group>
+    <group name="JobIdentification">
+        <scalar name="ProductionLocation">ECOSTRESS Science Computing Facility</scalar>
+        <scalar name="TaskId">urn:ecostress:L3GL4GALEXITask</scalar>
+        <scalar name="ProcessingNode">eco-p42.tir</scalar>
+        <scalar name="ProductionDateTime">2021-02-01T00:11:22.999Z</scalar>
+        <scalar name="JobId">2021-02-01T00:11:22.999+00:00</scalar>
+        <scalar name="WorkflowInstanceId">f9847fe3-2e6b-11ea-98fa-5b3f7b53f70c</scalar>
+    </group>
+    <group name="Geometry">
+        <scalar name="SceneId">01</scalar>
+        <scalar name="OrbitNumber">15000</scalar>
+    </group>
+    <group name="InputFileGroup">
+        <scalar name="L2G_LSTE">/ops/store/PRODUCTS/L2T_LSTE/2021/02/01/ECOv002_L2G_LSTE_15000_001_20210201T001122_0700_01.h5</scalar>
+        <vector name="L3T_ET_ALEXI">
+            <element>/ops/store/PRODUCTS/L3T_ET_ALEXI/2021/02/01/ECOv002_L3T_ET_ALEXI_15000_001_53NMJ_20210201T001122_0700_01.zip</element>
+            <element>/ops/store/PRODUCTS/L3T_ET_ALEXI/2021/02/01/ECOv002_L3T_ET_ALEXI_15000_001_55KDV_20210201T001122_0700_01.zip</element>
+        </vector>
+        <vector name="L4T_ESI_ALEXI">
+            <element>/ops/store/PRODUCTS/L4T_ESI_ALEXI/2021/02/01/ECOv002_L4T_ESI_ALEXI_15000_001_53NMJ_20210201T001122_0700_01.zip</element>
+            <element>/ops/store/PRODUCTS/L4T_ESI_ALEXI/2021/02/01/ECOv002_L4T_ESI_ALEXI_15000_001_55KDV_20210201T001122_0700_01.zip</element>
+        </vector>
+    </group>
+    <group name="StaticAncillaryFileGroup">
+        <scalar name="L3G_L4G_ALEXI_WORKING">/ops/operations/L3G_L4G/ALEXI/working</scalar>
+    </group>
+    <group name="PrimaryExecutable">
+        <scalar name="BuildID">0700</scalar>
+        <scalar name="FullPathname">/ops/deploy/pge/bin/current/L3G_L4G_ALEXI_PGE</scalar>
+    </group>
+    <group name="ProductPathGroup">
+        <scalar name="ProductCounter">01</scalar>
+        <scalar name="ProductPath">/ops/operations/current-jobs/L3G_L4G_ALEXI_PGE/20210201T001122999/output</scalar>
+    </group>
+    <group name="PGENameGroup">
+        <scalar name="PGEName">L3G_L4G_ALEXI_PGE</scalar>
+    </group>
+</input>
