@@ -2,6 +2,14 @@
 
 This repository contains the code for the ECOSTRESS Collection 2 L2G/L2T-L4G/L4T PGEs.
 
+[Gregory H. Halverson](https://github.com/gregory-halverson-jpl) (they/them)<br>
+[gregory.h.halverson@jpl.nasa.gov](mailto:gregory.h.halverson@jpl.nasa.gov)<br>
+NASA Jet Propulsion Laboratory 329G
+
+[Evan Davis](https://github.com/evandjpl) (he/him)<br>
+[evan.w.davis@jpl.nasa.gov](mailto:evan.w.davis@jpl.nasa.gov)<br>
+NASA Jet Propulsion Laboratory 397K
+
 ## Requirements
 
 This system was designed to work in a Linux-like environment and macOS using a conda environment, optionally running within a Docker container.
