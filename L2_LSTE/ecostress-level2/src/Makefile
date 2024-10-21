@@ -1,0 +1,130 @@
+# !gmake
+# DEBUG = 1
+#
+# !Makefile Name: Makefile
+#
+# !Description: Makefile for L2_PGE Land Surface Temperature and Emissivity.
+#               This makefile used to generate l2_tes_pge
+#
+# !Env Variables:
+#
+#      ENV VARIABLES DESCRIPTION
+#      ~~~~~~~~~~~~~ ~~~~~~~~~~~
+#      CC            The c compiler
+#      CFLAGS        Compiler flags
+#      HDFINC        Include directory of HDF
+#      HDF5INC       Include directory of HDF5
+#      HDFLIB        Library for HDF
+#      HDF5LIB       Library for HDF5
+#
+# !Revision History:
+#  Date:        PR#     Author          Description
+#  -------      -----   ------          -----------
+#  05/03/16             R. Freepartner  Initial Version
+###################################################################
+
+ifndef HDFINC
+HDFINC = /pkg/afids/afids_latest/include
+endif
+
+ifndef HDFLIB
+HDFLIB = /pkg/afids/afids_latest/lib
+endif
+
+ifndef HDF5INC
+HDF5INC = /pkg/afids/afids_latest/include
+endif
+
+ifndef HDF5LIB
+HDF5LIB = /pkg/afids/afids_latest/lib
+endif
+
+ifndef GRIBLIB
+GRIBLIB = /project/test/rfreepar/lib
+endif
+
+##################
+# EXPAT settings
+# Adds support for checking lexical aspects of namespaces
+XP_NS = -DXML_NS
+# Adds support for processing DTDs
+XP_DTD = -DXML_DTD
+# Byte order macro
+#This is for little endian machines
+XP_BO = -DXML_BYTE_ORDER=12
+
+XP_DEFINES = $(XP_NS) $(XP_DTD) $(XP_BO) $(XP_UNI) $(XP_UNI_WC) $(XP_MM)
+##################
+
+ifdef DEBUG
+ADD_CFLAGS = -g -Wall
+else
+ADD_CFLAGS = -O3 -Wall
+endif
+
+# Object files
+TES_OBJ = \
+    tes_main.o \
+    asterged.o \
+    cloud.o \
+    config.o \
+    describe.o \
+    error.o \
+    fileio.o \
+    interps.o \
+    lste_lib.o \
+    matrix.o \
+    maptogrid.o \
+    metadata.o \
+    morphology.o \
+    rttov_util.o \
+    smooth2d.o \
+    tes_util.o \
+    tg_wvs.o \
+
+ALLOBJ = $(TES_OBJ)
+
+# Combine the includes using pre-defined includes and your includes
+INC = -I. -I$(HDFINC) -I$(HDF5INC) -I/usr/include -I/project/test/rfreepar/include
+
+# Header files
+HDR = asterged.h \
+      cloud.h \
+      config.h \
+      describe.h \
+      fileio.h \
+      interps.h \
+      lste_lib.h \
+      maptogrid.h \
+      matrix.h \
+      metadata.h \
+      morphology.h \
+      rttov_util.h \
+      smooth2d.h \
+      tes_util.h \
+      tg_wvs.h \
+
+# Combine the libraries using pre-defined libraries and your library
+LIB = -L$(HDFLIB) -lmfhdf -L$(HDF5LIB) -lhdf5 -L$(GRIBLIB) -lgrib_api -L/usr/lib -lexpat -ldl -ldf -ljpeg -lz -lm 
+
+# Define executable name
+TARGET = L2_PGE	
+
+all:	$(TARGET)
+$(TARGET):	$(TES_OBJ) $(HDR)
+	 $(CC) $(ADD_CFLAGS) $(XP_DEFINES) $(TES_OBJ) $(LIB) -o $(TARGET)
+
+.c.o:
+	$(CC) $(CFLAGS) $(ADD_CFLAGS) $(INC) -c $< -o $@
+	
+# Delete object files
+clean: clean_exe clean_o
+
+clean_o:
+	rm -f $(ALLOBJ)
+
+# Delete the executable file $TARGET
+clean_exe:
+	rm -f $(TARGET)
+
+###################################################################

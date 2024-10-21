@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<input xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xalan="http://xml.apache.org/xslt"
+       xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas"
+       xsi:noNamespaceSchemaLocation="">
+    <group name="PrimaryExecutable">
+        <scalar name="FullPathname">/project/deploy/pcs/sds/L2_PGE</scalar>
+        <scalar name="BuildID">0101</scalar>
+    </group>
+    <group name="StaticAncillaryFileGroup">
+        <scalar name="NWP_DIR">/project/test/NWP/GOES</scalar>
+        <scalar name="L2_OSP_DIR">/dit/deploy/pge/L2/ecostress-level2/OSP</scalar>
+    </group>
+    <group name="ProductPathGroup">
+        <scalar name="ProductCounter">01</scalar> 
+        <scalar name="ProductPath">
+          /project/test/LSTE/SoCal_201208112035/output
+        </scalar>
+    </group>
+    <group name="PGENameGroup">
+        <scalar name="PGEName">L2_PGE</scalar>
+    </group>
+    <group name="JobIdentification">
+        <scalar name="WorkflowInstanceId">89110028-9ae1-11e5-9b77-0b1ccef15de6</scalar>
+        <scalar name="ProcessingNode">eco-p18.tir</scalar>
+        <scalar name="TaskId">urn:ecostress:L2Task</scalar>
+        <scalar name="JobId">2016-05-25T23:50:38.170+00:00</scalar>
+        <scalar name="ProductionDateTime">2016-05-25T23:50:39.901Z</scalar>
+        <scalar name="ProductionLocation">ECOSTRESS Science Computing Facility</scalar>
+    </group>
+    <group name="InputFileGroup">
+        <scalar name="L1B_GEO">/project/test/LSTE/data/ECOSTRESS_L1B_GEO_SoCal_20120811T203500_0001_02.h5</scalar>
+        <scalar name="L1B_RAD">/project/test/LSTE/data/ECOSTRESS_L1B_RAD_SoCal_20120811T203500_0001_02.h5</scalar>
+    </group>
+    <group name="LogMetadata">
+      <vector name="CommandLineParameters">
+        <element>/dit/deploy/pge/L2/ecostress-level2/src/L2_PGE</element>
+        <element>/project/test/LSTE/SoCal_201208112035/SoCal_201208112035_0000_V1_RunConfig.xml</element>
+        <element>/project/test/LSTE/SoCal_201208112035/output/l2_pge_SoCal_201208112035.log</element>
+      </vector>
+    </group>
+    <group name="Geometry">
+        <scalar name="OrbitNumber">80001</scalar>
+        <scalar name="SceneId">001</scalar>
+    </group>
+</input>

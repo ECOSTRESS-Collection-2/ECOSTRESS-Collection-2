@@ -1,0 +1,61 @@
+
+pipeline {
+    parameters {
+        string(name: 'RELEASE', defaultValue: 'master', description: '')
+    }
+    environment {
+        ARTIFACTORY_API_TOKEN = "evand_ARTIFACTORY_API_TOKEN"
+        IMAGE_PATH = "gov/nasa/jpl/ecostress/sds/pge/pge-eco-level-2-3-4"
+    }
+    options {
+        buildDiscarder logRotator(
+            artifactDaysToKeepStr: '',
+            artifactNumToKeepStr: '',
+            daysToKeepStr: '',
+            numToKeepStr: '20'
+        )
+    }
+    agent {
+        label 'cae-linux-build'
+    }
+    stages{
+        stage('Checkout chosen release') {
+            steps {
+                sh "git checkout ${RELEASE}"
+                script {
+                    version = readFile("ECOSTRESS/PGEVersion.txt").trim()
+                    release = params['RELEASE']
+                    if (sh(script: "git show-ref -q --verify 'refs/tags/${release}' 2>/dev/null", returnStatus: true) == 0) {
+                        if (version != release) {
+                            error "Tried to build a release tag but the PGE Version is wrong"
+                        }
+                    }
+                }
+            }
+        }
+        stage('Clear Docker logins') {
+            steps {
+                sh "docker logout"
+            }
+        }
+        stage('Building and Pushing Image') {
+            steps {
+                script {
+                    docker.withRegistry("https://artifactory.jpl.nasa.gov:16001", env.ARTIFACTORY_API_TOKEN) {
+                        img = docker.build(
+                            env.IMAGE_PATH,
+                            "-f Dockerfile ."
+                        )
+                        img.push("latest")
+
+                        if (version == release) {
+                            img.push("${version}")
+                        } else {
+                            img.push("${release}_${env.BUILD_NUMBER}")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
